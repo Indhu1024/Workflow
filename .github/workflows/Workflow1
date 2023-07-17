@@ -1,0 +1,23 @@
+name: Workflow Example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  add_content:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create file
+        run: |
+          echo "Sample content" > sample-file.txt
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Add content to sample-file.txt"
+          commit_user_name: "Indhu1024"
+          commit_user_email: "indhuchandran10@gmail.com"
