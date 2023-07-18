@@ -18,6 +18,6 @@ jobs:
 
 - name: Write to file
         run: |
-          file_path="Sample text.txt"
+          file_path=.github/workflows/Sample text.txt
           echo "This content will overwrite the file." > "$file_path"
      
