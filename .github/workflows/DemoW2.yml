@@ -26,6 +26,6 @@ jobs:
          realpath my-docker-image
        
       - name: Push Docker image to Docker Hub
-        run: docker image push indhu1024/my-docker-image:latest
+        run: docker image push /home/runner/work/Workflow/Workflow/my-docker-image:latest
         
        # run: docker image push my-docker-image:latest
