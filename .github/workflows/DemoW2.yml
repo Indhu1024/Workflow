@@ -20,5 +20,9 @@ jobs:
         run: |
           docker build -t my-docker-image .
           docker run -d my-docker-image
+      - name: List images
+        run: |
+         docker image ls
+       
       - name: Push Docker image to Docker Hub
         run: docker image push indhu1024/workflow/my-docker-image:latest
