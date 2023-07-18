@@ -1,1 +1,4 @@
 name: Workflow 2
+on:
+ workflow_run:
+  workflows: ["workflow 1"]
