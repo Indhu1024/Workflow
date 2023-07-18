@@ -25,4 +25,4 @@ jobs:
          docker image ls
        
       - name: Push Docker image to Docker Hub
-        run: docker image push indhu1024/workflow/my-docker-image:latest
+        run: docker push my-docker-image:latest
