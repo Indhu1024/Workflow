@@ -15,4 +15,4 @@ jobs:
       - name: Write to file
         run: |
           file_path="Sample.txt"
-          echo "This content will overwrite the file." > "$file_path"
+          echo "This content will overwrite the file." | tee -a "$file_path"
