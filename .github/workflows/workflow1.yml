@@ -13,11 +13,11 @@ jobs:
 
       - name: Create file
         run: |
-          echo "Hello World" > Sample text.txt
+          echo "Hello World" > Sampletext.txt
           
 
       - name: Write to file
         run: |
-          file_path="Sample text.txt"
+          file_path="Sampletext.txt"
           echo "This content will overwrite the file." | tee -a "$file_path"
      
