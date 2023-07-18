@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  add_content:
+ build:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +16,7 @@ jobs:
           echo "Hello World" > Sample text.txt
           
 
-- name: Write to file
+      - name: Write to file
         run: |
           file_path="Sample text.txt"
           echo "This content will overwrite the file." | tee -a "$file_path"
