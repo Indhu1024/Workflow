@@ -19,7 +19,7 @@ jobs:
       - name: Trigger Workflow 2
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: Indhu1024
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          repository: Indhu1024/Workflow
           event-type: trigger-workflow-2
           client-payload: '{"file_name": "mytextfile.txt"}'
