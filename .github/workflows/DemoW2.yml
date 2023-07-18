@@ -25,6 +25,6 @@ jobs:
          docker image ls
        
       - name: Push Docker image to Docker Hub
-        run: docker image push docker.io/indhu1024/my-docker-image:latest
+        run: docker image push indhu1024/my-docker-image:latest
         
        # run: docker image push my-docker-image:latest
