@@ -16,7 +16,7 @@ jobs:
         run: |
           file_path="Sample.txt"
           echo "This content will overwrite the file." | tee -a "$file_path"
-      - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "Update file content via GitHub Actions"
+    # - name: Commit and push changes
+     #   uses: stefanzweifel/git-auto-commit-action@v4
+      #  with:
+       #   commit_message: "Update file content via GitHub Actions" 
