@@ -16,13 +16,7 @@ jobs:
         run: |
           file_path="Sample.txt"
           echo "This content will overwrite the file." | tee -a "$file_path"
-           - name: Trigger Workflow 2
-    uses: peter-evans/repository-dispatch@v1
-     with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: Indhu1024
-          event-type: trigger-workflow-2
-          client-payload: '{"file_name": "Sample.txt"}'
+     
     # - name: Commit and push changes
      #   uses: stefanzweifel/git-auto-commit-action@v4
       #  with:
