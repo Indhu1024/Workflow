@@ -1,0 +1,25 @@
+name: Workflow 1
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create text file
+        run: echo "Hello, World!" > mytextfile.txt
+
+      - name: Trigger Workflow 2
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: your-username/your-repo
+          event-type: trigger-workflow-2
+          client-payload: '{"file_name": "mytextfile.txt"}'
