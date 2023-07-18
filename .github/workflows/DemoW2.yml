@@ -1,0 +1,22 @@
+name: Demo Workflow 2
+
+on:
+  repository_dispatch:
+    types: [trigger-workflow-2]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t my-docker-image .
+          docker run -d my-docker-image
+
+      - name: Copy text file
+        run: |
+          cp ${{ github.event.client_payload.file_name }} /path/inside/docker/container
