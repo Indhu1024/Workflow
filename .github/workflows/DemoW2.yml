@@ -21,6 +21,3 @@ jobs:
           docker build -t my-docker-image .
           docker run -d my-docker-image
 
-      - name: Copy text file
-        run: |
-          cp ${{ github.event.client_payload.file_name }} /path/inside/docker/container
