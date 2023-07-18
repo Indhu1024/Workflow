@@ -11,13 +11,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Create file
-        run: |
-          echo "Hello World" > Sampletext.txt
-          
-
+     
       - name: Write to file
         run: |
-          file_path="Sampletext.txt"
-          echo "This content will overwrite the file." | tee -a "$file_path"
-     
+          file_path="Sample.txt"
+          echo "This content will overwrite the file." > "$file_path"
