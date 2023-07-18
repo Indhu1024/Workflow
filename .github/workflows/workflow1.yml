@@ -15,14 +15,6 @@ jobs:
         run: |
           echo "Hello World" > Sample text.txt
           
-   - name: Read file content
-        run: |
-          file_path="Sample text.txt"
-          if [ -f "$file_path" ]; then
-            cat "$file_path"
-          else
-            echo "File not found: $file_path"
-            exit 1
-          fi 
+
 
      
