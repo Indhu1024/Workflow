@@ -1,4 +1,19 @@
 name: Workflow 2
 on:
  workflow_run:
-  workflows: ["workflow 1"]
+  workflows: ["Workflow 1"]
+  types:
+    - completed
+jobs:
+ build:
+   runs-on: ubuntu-latest
+   steps:
+     - name: checkout repository
+       uses: actions/checkout@v2
+     - name: Login to Docker Hub
+       uses: docker/login-action@v1
+       
+     
+     
+      
+
