@@ -32,7 +32,7 @@ jobs:
        
       - name: Push Docker image to Docker Hub
         run: |
-             docker image push indhu1024/workflow:newtag/my-docker-image:latest
+             docker image push indhu1024/workflow:newtag
      #docker tag my-docker-image:latest indhu1024/workflow:newtag
        # run: docker image push my-docker-image:latest
 #docker tag my-docker-image:latest your-username/your-repo:newtag
