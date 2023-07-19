@@ -27,11 +27,11 @@ jobs:
          realpath my-docker-image
       - name: Tag image
         run: |
-         docker tag my-docker-image:latest Indhu1024/workflow:newtag
+         docker tag my-docker-image:latest indhu1024/workflow:newtag
  
        
       - name: Push Docker image to Docker Hub
-        run: docker image push Indhu1024/my-docker-image:newtag
+        run: docker image push indhu1024/my-docker-image:newtag
         
        # run: docker image push my-docker-image:latest
 #docker tag my-docker-image:latest your-username/your-repo:newtag
