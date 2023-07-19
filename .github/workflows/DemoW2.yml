@@ -31,7 +31,8 @@ jobs:
  
        
       - name: Push Docker image to Docker Hub
-        run: docker tag my-docker-image:latest indhu1024/workflow:newtag
+        run: |
+           docker tag my-docker-image:latest indhu1024/workflow
            docker image push indhu1024/workflow/my-docker-image:latest
         
        # run: docker image push my-docker-image:latest
