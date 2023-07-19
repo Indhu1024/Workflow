@@ -15,4 +15,4 @@ jobs:
         run: docker image pull indhu1024/workflow:newtag
 
       - name: Run Docker container
-        run: docker run indhu1024/workflow:newtag  
+        run: docker run indhu1024/workflow:newtag 
