@@ -15,4 +15,4 @@ jobs:
         run: docker pull indhu1024/workflow:newtag
 
       - name: Run Docker container
-        run: docker run indhu1024/workflow:newtag cat /path/to/text-file.txt
+        run: docker run indhu1024/workflow:newtag cat /path/to/mytextfile.txt
