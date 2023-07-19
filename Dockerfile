@@ -9,4 +9,5 @@ COPY . /app
 
 # Set the entry point and command to run
 CMD ["echo", "Hello, World!"]
+CMD ["echo", "Task 1 in Genesys"]
 
