@@ -1,7 +1,9 @@
-name: Scheduled Workflow
-on:
-  workflow_dispatch
+name: DemoW3
+ 
 
+on:
+  schedule:
+    - cron: "*/2 * * * *"
 jobs:
   run-container:
     runs-on: ubuntu-latest
