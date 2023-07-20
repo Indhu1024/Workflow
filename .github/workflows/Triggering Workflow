@@ -13,16 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check for changes in sample.txt
+      - name: Check for changes in text.txt
         id: check_changes
         run: |
           git fetch --prune --unshallow origin
           CHANGES=$(git diff --name-only HEAD~1..HEAD)
-          if [[ $CHANGES == *"Sample.txt"* ]]; then
-            echo "Changes in sample.txt detected."
+          if [[ $CHANGES == *"Text.txt"* ]]; then
+            echo "Changes in Text.txt detected."
             echo "::set-output name=changes_detected::true"
           else
-            echo "No changes in sample.txt."
+            echo "No changes in Text.txt."
             echo "::set-output name=changes_detected::false"
           fi
 
