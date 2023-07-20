@@ -1,5 +1,4 @@
 name: Triggering Workflow
-
 on:
   push:
     branches:
