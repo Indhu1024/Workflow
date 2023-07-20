@@ -1,0 +1,31 @@
+name: Triggering Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  poll_and_trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check for changes in sample.txt
+        id: check_changes
+        run: |
+          git fetch --prune --unshallow origin
+          CHANGES=$(git diff --name-only HEAD~1..HEAD)
+          if [[ $CHANGES == *"Sample.txt"* ]]; then
+            echo "Changes in sample.txt detected."
+            echo "::set-output name=changes_detected::true"
+          else
+            echo "No changes in sample.txt."
+            echo "::set-output name=changes_detected::false"
+          fi
+
+      - name: Trigger Workflow 1
+        if: steps.check_changes.outputs.changes_detected == 'true'
+        uses: workflow_dispatch
