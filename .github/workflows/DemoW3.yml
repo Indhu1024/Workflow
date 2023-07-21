@@ -1,6 +1,4 @@
 name: Demo Workflow 3
- 
-
 on:
   schedule:
     - cron: "*/2 * * * *"
