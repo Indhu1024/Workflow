@@ -5,9 +5,8 @@ FROM ubuntu:latest
 WORKDIR /app
 
 # Copy the application code into the container
-COPY . /app
-
-# Set the entry point and command to run
-CMD ["echo", "Hello, World!"]
-CMD ["echo", "Task 1 in Genesys"]
-
+CMD ["echo", "Sample text file
+Genesys
+Chennai
+India
+indhu"]
