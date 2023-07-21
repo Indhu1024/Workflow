@@ -46,15 +46,15 @@ jobs:
            password: ${{  secrets.DOCKER_PASSWORD  }}
       - name: Build Docker image
         run: |
-          docker build -t my-docker-image .
-          docker run -d my-docker-image
+          docker build -t my-docker-image3 .
+          docker run -d my-docker-image3
       - name: List images
         run: |
          docker image ls
-         realpath my-docker-image
+         realpath my-docker-image3
       - name: Tag image
         run: |
-         docker tag my-docker-image:latest indhu1024/workflow:newtag
+         docker tag my-docker-image3:latest indhu1024/workflow:newtag
 
  
       - name: Push Docker image to Docker Hub
