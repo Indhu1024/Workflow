@@ -1,19 +1,46 @@
 name: Demo Workflow 2
-
 on:
   repository_dispatch:
     types: [trigger-workflow-2]
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Create Dockerfile
+        run: |
+          # Set the name of your text file in the repository
+          TEXT_FILE=Text.txt
+          # Save the Dockerfile content to a file
+          echo "# Use a base image" > Dockerfile
+          echo "FROM ubuntu:latest" >> Dockerfile
+          echo "" >> Dockerfile
+          echo "# Set the working directory" >> Dockerfile
+          echo "WORKDIR /app" >> Dockerfile
+          echo "" >> Dockerfile
+          echo "# Copy the application code into the container" >> Dockerfile
+          CONTENT=$(cat "$TEXT_FILE")
+          echo "CMD [\"echo\", \"$CONTENT\"]" >> Dockerfile
+
+          # Commit and push the generated Dockerfile back to the repository
+          git config user.name "Indhu1024"
+          git config user.email "indhuchandran10@gmail.com"
+          git add Dockerfile
+          git commit -m "Generated Dockerfile from $TEXT_FILE"
+          git remote set-url origin "https://github.com/premkumar2812/task.git"
+          git push origin main
+
+      - name: View generated Dockerfile
+        run: cat Dockerfile
+
+ 
+
       - name: Login to docker hub
         uses: docker/login-action@v1
-        
+
+ 
+
         with:
            username: ${{  secrets.DOCKER_USERNAME  }}
            password: ${{  secrets.DOCKER_PASSWORD  }}
@@ -27,16 +54,9 @@ jobs:
          realpath my-docker-image
       - name: Tag image
         run: |
-          docker tag my-docker-image:latest indhu1024/workflow:newtag
+         docker tag my-docker-image:latest indhu1024/workflow:newtag
+
  
-       
       - name: Push Docker image to Docker Hub
         run: |
-             docker image push indhu1024/workflow:newtag
-     #docker tag my-docker-image:latest indhu1024/workflow:newtag
-       # run: docker image push my-docker-image:latest
-#docker tag my-docker-image:latest your-username/your-repo:newtag
-
-#docker tag <local image name> <hub username/image name>
-
-#docker image push <hub username/image name>
+           docker image push indhu1024/workflow:newtag
