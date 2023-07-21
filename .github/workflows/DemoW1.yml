@@ -12,14 +12,24 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Create text file
-        run: echo "Hello, World!" > mytextfile.txt
+      - name: Check if Text.txt exists
+        run: |
+          if [ -f "Text.txt" ]; then
+            echo "Text.txt exists"
+            exit 0
+          else
+            echo "Text.txt does not exist"
+            echo "Hello, World!" > Text.txt
+            git config --global user.name "Indhu1024"
+            git config --global user.email "indhuchandran10@gmail.com"
+            git add Text.txt
+            git commit -m "Add content to Text.txt"
+            git push
+          fi
 
       - name: Trigger Workflow 2
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.WORKFLOW_TOKEN }}
           repository: Indhu1024/Workflow
-          event-type: trigger-workflow-2
-          client-payload: '{"file_name": "mytextfile.txt"}'
+          event-type: trigger workflow 2
