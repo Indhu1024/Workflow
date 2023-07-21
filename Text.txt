@@ -1,5 +1,2 @@
-Sample text file
-Genesys
-Chennai
-India
-indhumathi
+Sample text file,Genesys
+
