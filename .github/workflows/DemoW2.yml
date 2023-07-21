@@ -28,7 +28,7 @@ jobs:
           git config user.email "indhuchandran10@gmail.com"
           git add Dockerfile
           git commit -m "Generated Dockerfile from $TEXT_FILE"
-          git remote set-url origin "https://github.com/premkumar2812/task.git"
+          git remote set-url origin "https://github.com/Indhu1024/Workflow"
           git push origin main
 
       - name: View generated Dockerfile
