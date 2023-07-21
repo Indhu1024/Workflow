@@ -1,7 +1,9 @@
 name: Demo Workflow 1
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+  repository_dispatch:
+        types: [trigger-workflow-1]
 
 jobs:
   build:
