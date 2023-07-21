@@ -32,4 +32,4 @@ jobs:
         with:
           token: ${{ secrets.WORKFLOW_TOKEN }}
           repository: Indhu1024/Workflow
-          event-type: trigger workflow 2
+          event-type: trigger-workflow-2
