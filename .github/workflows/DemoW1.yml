@@ -18,18 +18,25 @@ jobs:
         uses: actions/checkout@v2
       - name: Check if Text.txt exists
         run: |
-          if [ -f "Text.txt" ]; then
-            echo "Text.txt exists"
-            exit 0
-          else
-            echo "Text.txt does not exist"
-            echo "Hello, World!" > Text.txt
-            git config --global user.name "Indhu1024"
-            git config --global user.email "indhuchandran10@gmail.com"
-            git add Text.txt
-            git commit -m "Add content to Text.txt"
-            git push
-          fi
+         if [ -f "Text.txt" ]; then
+          echo "${{ github.event.inputs.text_content }}" > Text.txt
+          git config --global user.name "Indhu1024"
+          git config --global user.email "indhuchandran10@gmail.com"
+          git add Text.txt
+          git commit -m "Add content to Text.txt"
+          git push
+         else
+          echo "Text.txt already exists"
+          exit 0
+         fi
+       #  echo "Text.txt exists"
+        # exit 0
+       # else
+        #  echo "Text.txt does not exist"
+       # echo "Hello, World!" > Text.txt
+            
+            
+        
 
       - name: Trigger Workflow 2
         uses: peter-evans/repository-dispatch@v1
