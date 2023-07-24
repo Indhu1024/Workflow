@@ -5,4 +5,4 @@ FROM ubuntu:latest
 WORKDIR /app
 
 # Copy the application code into the container
-CMD ["echo", "Hi Genesys!"]
+CMD ["echo", ""]
