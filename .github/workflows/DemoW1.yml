@@ -2,6 +2,10 @@ name: Demo Workflow 1
 
 on:
   workflow_dispatch:
+   inputs:
+      text_content:
+        description: 'Text content for Text.txt'
+        required: true
   repository_dispatch:
         types: [trigger-workflow-1]
 
