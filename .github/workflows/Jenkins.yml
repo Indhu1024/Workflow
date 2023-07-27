@@ -9,5 +9,7 @@ jobs:
   stages:
     - stage: "Ping Google"
       steps:
-        - sh:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - sh:
             script: "ping -c 5 google.com"
