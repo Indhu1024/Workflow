@@ -3,6 +3,9 @@ on:
 pipeline:
   agent: any
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
   stages:
     - stage: "Ping Google"
       steps:
