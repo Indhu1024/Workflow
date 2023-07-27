@@ -1,15 +1,11 @@
 on:
   workflow_dispatch:
-pipeline:
-  agent: any
 
 jobs:
   build:
     runs-on: ubuntu-latest
-  stages:
-    - stage: "Ping Google"
-      steps:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - sh:
-            script: "ping -c 5 google.com"
+      - name: Ping Google
+        run: ping -c 5 google.com
