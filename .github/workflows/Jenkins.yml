@@ -1,0 +1,8 @@
+pipeline:
+  agent: any
+
+  stages:
+    - stage: "Ping Google"
+      steps:
+        - sh:
+            script: "ping -c 5 google.com"
