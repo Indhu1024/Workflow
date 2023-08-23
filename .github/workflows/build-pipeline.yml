@@ -1,5 +1,4 @@
 name: GWS 8.6 Build Pipeline
-
 on:
   workflow_call:
     inputs:
