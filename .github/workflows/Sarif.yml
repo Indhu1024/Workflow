@@ -14,4 +14,4 @@ jobs:
       uses: microsoft/sarif-actions@v0.1
       with:
         # Command to be sent to SARIF Multitool
-        command: 'validate /usr/home/genesys/sarif/cx.sarif'
+        command: 'validate C:\Users\ibalacha\Downloads\cx.sarif'
