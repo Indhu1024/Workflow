@@ -138,6 +138,3 @@ jobs:
 
  
 
-  repack-dependencies:
-    name: Repack Ship-With components
-    uses: ./.github/workflows/repack-dependencies.yml
