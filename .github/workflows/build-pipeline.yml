@@ -139,7 +139,7 @@ jobs:
   security-scans:
     name: Security
     needs: [ build-containers ]
-    uses: ./.github/workflows/build-scans.yml
+    uses: ./build-scans.yml
     with:
       version-tag: ${{ inputs.version-tag }}
 
