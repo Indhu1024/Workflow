@@ -19,7 +19,7 @@ jobs:
   # Building GWS86 application and create an OCI container
   build-gws86:
     name: Compile - Unit Tests - Static Code Analysis
-    runs-on: [ self-hosted, gws-8.6 ]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -70,7 +70,7 @@ jobs:
   sarif-report:
     needs: build-gws86
     name: SARIF Multitool
-    runs-on: [self-hosted, gws-8.6, d-bsd-u0004]
+    runs-on: ubuntu-latest
     steps:
     - name: SARIF report
       uses: microsoft/sarif-actions@v0.1
@@ -80,7 +80,7 @@ jobs:
   static-code-analysis:
     needs: build-gws86
     name: Static Code Analysis
-    runs-on: [ self-hosted, gws-8.6]
+    runs-on: ubuntu-latest
     container:
       image: registry.gitlab.com/gitlab-ci-utils/curl-jq:latest
       options: >-
@@ -114,7 +114,7 @@ jobs:
 
   helm:
     name: Helm Chart
-    runs-on: [ self-hosted, gws-8.6 ]
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "Dummy 8.6 compile and unit test"
@@ -123,7 +123,7 @@ jobs:
   build-containers:
     name: Containers
     needs: [ build-gws86 ]
-    runs-on: [ self-hosted, gws-8.6 ]
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "Dummy 8.6 Build Containers"
@@ -131,7 +131,7 @@ jobs:
   build-rpm:
     name: RPM
     needs: [ build-containers ]
-    runs-on: [ self-hosted, gws-8.6 ]
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "Dummy 8.6 RPM Build"
