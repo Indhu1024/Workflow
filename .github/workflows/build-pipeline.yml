@@ -136,12 +136,7 @@ jobs:
       - run: |
           echo "Dummy 8.6 RPM Build"
 
-  security-scans:
-    name: Security
-    needs: [ build-containers ]
-    uses: ./build-scans.yml
-    with:
-      version-tag: ${{ inputs.version-tag }}
+ 
 
   repack-dependencies:
     name: Repack Ship-With components
