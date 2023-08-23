@@ -1,5 +1,4 @@
 name: SARIF Validation Workflow
-
 on: 
    workflow_dispatch:
 
