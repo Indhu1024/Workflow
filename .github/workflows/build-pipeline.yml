@@ -1,4 +1,5 @@
 name: GWS 8.6 Build Pipeline
+
 on:
   workflow_call:
     inputs:
@@ -10,13 +11,12 @@ on:
         type: string
   push:
     branches-ignore: [ 'master' ]
-
+  pull_request:
 env:
   GWS_OCI_DEV_REGISTRY: gws-oci-dev.artifactory.gws.genesys.com
-
 jobs:
 
-  # Building GWS86 application and create an OCI container:
+  # Building GWS86 application and create an OCI container
   build-gws86:
     name: Compile - Unit Tests - Static Code Analysis
     runs-on: [ self-hosted, gws-8.6 ]
@@ -31,16 +31,25 @@ jobs:
             -Dsonar.login=${{ secrets.GWS_SONAR_TOKEN }} -Dsonar.host.url=${{ secrets.GWS_SONAR_HOST_URL }} \
             clean build sonarqube
           popd
-    name: Generate Test Reports
-    steps:
-      - name: XUnit Viewer
-        id: xunit-viewer
-        uses: AutoModality/action-xunit-viewer@v1  
-      - name: Attach the report
-        uses: actions/upload-artifact@v1
+     
+      - name: Jacoco test reports
+        uses: madrapps/jacoco-report@v1.6.1
         with:
-          name: ${{ steps.xunit-viewer.outputs.report-name }}
-          path: ${{ steps.xunit-viewer.outputs.report-dir }}
+          paths: |
+            ${{ github.workspace }}/**/build/reports/jacoco/test/jacocoTestReport.xml            
+          min-coverage-overall: 80
+          min-coverage-changed-files: 60
+          token: ${{ secrets.GIT_HUB_TOKEN }}
+          title: Code Coverage
+          update-comment: true
+          debug-mode: true
+          
+      - name: Fail PR if overall coverage is less than 80%
+        if: ${{ steps.jacoco.outputs.coverage-overall < 80.0 }}
+        uses: actions/github-script@v6
+        with:
+         script: |
+          core.setFailed('Overall coverage is less than 80%!')   
       - name: Save SonarQube report
         uses: actions/upload-artifact@v3
         with:
@@ -58,7 +67,15 @@ jobs:
             --dest-creds ${{ secrets.GWS_ARTIFACTORY_CREDENTIALS }} \
             containers-storage:${{ env.GWS_OCI_DEV_REGISTRY }}/gws-api-v2:8.6.000.00-${GITHUB_RUN_NUMBER} \
             docker://${{ env.GWS_OCI_DEV_REGISTRY }}/gws-api-v2:8.6.000.00-${GITHUB_RUN_NUMBER}
-  
+  sarif-report:
+    needs: build-gws86
+    name: SARIF Multitool
+    runs-on: [self-hosted, gws-8.6, d-bsd-u0004]
+    steps:
+    - name: SARIF report
+      uses: microsoft/sarif-actions@v0.1
+      with:
+         command: 'validate file.sarif'          
   # Checking Quality Gate status of the build at SonarQube server:
   static-code-analysis:
     needs: build-gws86
