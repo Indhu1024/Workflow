@@ -20,11 +20,21 @@ jobs:
       run: |
         python sarif_to_markdown.py cx.sarif
       continue-on-error: true
+    - name: Add SARIF Report Comment
+      uses: actions/github-script@v3
+      with:
+          github-token: ${{ secrets.WORKFLOW_TOKEN }}
+          script: |
+            const markdownContent = "${{ steps.sarif_to_markdown.outputs.markdown }}";
+            echo "$markdownContent"
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: markdownContent,
+            });
 
-    - name: Print Markdown Report
-      run: |
-        echo "${{ steps.sarif-to-markdown.outputs.markdown }}"
-
+ 
 
 
 
