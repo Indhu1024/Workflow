@@ -21,7 +21,7 @@ jobs:
         python sarif_to_markdown.py cx.sarif
       continue-on-error: true
     - name: Add SARIF Report Comment
-      uses: actions/github-script@v3
+      uses: actions/github-script@v4
       with:
           github-token: ${{ secrets.WORKFLOW_TOKEN }}
           script: |
