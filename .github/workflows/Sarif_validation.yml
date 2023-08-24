@@ -15,3 +15,27 @@ jobs:
       with:
         # Command to be sent to SARIF Multitool
         command: 'validate cx.sarif'
+    - name: Convert SARIF to Markdown
+      id: sarif-to-md
+      run: |
+          # Use a tool or script to convert SARIF to Markdown
+          # Store the Markdown content as an output
+          echo "::set-output name=markdown::$(cat converted_report.md)"
+
+    - name: Add SARIF Report Comment
+      uses: actions/github-script@v3
+      with:
+          github-token: ${{ secrets.WORKFLOW_TOKEN }}
+          script: |
+            const markdownContent = "${{ steps.sarif-to-md.outputs.markdown }}";
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: markdownContent,
+            });
+
+
+
+
+   
