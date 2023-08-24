@@ -18,22 +18,16 @@ jobs:
     - name: Convert SARIF to Markdown
       id: sarif-to-md
       run: |
-          # Use a tool or script to convert SARIF to Markdown
-          # Store the Markdown content as an output
-          echo "::set-output name=markdown::$(cat converted_report.md)"
+        python sarif_to_markdown.py cx.sarif
+      continue-on-error: true
 
-    - name: Add SARIF Report Comment
-      uses: actions/github-script@v3
-      with:
-          github-token: ${{ secrets.WORKFLOW_TOKEN }}
-          script: |
-            const markdownContent = "${{ steps.sarif-to-md.outputs.markdown }}";
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: markdownContent,
-            });
+    - name: Print Markdown Report
+      run: |
+        echo "${{ steps.sarif-to-markdown.outputs.markdown }}"
+
+
+
+
 
 
 
