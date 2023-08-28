@@ -22,7 +22,7 @@ jobs:
           path: report.sarif
 
       - name: Generate SARIF Visualization
-        uses: philips-labs/sarif-reporter@v2
+        uses: khulnasoft-labs/tfsecurity-sarif-action@v1
         with:
           input-file: cx.sarif
           output-file: cx.html
