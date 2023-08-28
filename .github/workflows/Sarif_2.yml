@@ -9,11 +9,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Validate SARIF
-        run: |
-          # Run your SARIF validation command here
-          # This could be a call to a tool that generates SARIF reports
-          # Example: sarif-generation-tool --output-file cx.sarif
+      - name: Install security-scanner 
+        run: npm install -g security-scanner 
+
+      - name: Generate SARIF report
+        run: security-scanner  --output-file report.sarif 
+        
+      - name: Upload SARIF report
+        uses: actions/upload-artifact@v2
+        with:
+          name: sarif-report
+          path: report.sarif
 
       - name: Generate SARIF Visualization
         uses: philips-labs/sarif-reporter@v2
