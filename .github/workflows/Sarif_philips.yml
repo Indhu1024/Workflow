@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Convert SARIF to HTML
-        run: npx philips-labs/sarif-reporter -i cx.sarif -o report.html --token ${{ secrets.SARIF_TOKEN }}
+        run: npx philips-labs/sarif-reporter -i cx.sarif -o report.html --token ${{ secrets.SARIF_TOKEN }} --repo https://github.com/Indhu1024/Workflow.git
 
       - name: Upload HTML Report
         uses: actions/upload-artifact@v2
