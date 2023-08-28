@@ -31,7 +31,7 @@ jobs:
       - name: Comment with Markdown Report
         uses: actions/github-script@v4
         with:
-         github-token: ${{ secrets.GITHUB_TOKEN }}
+         github-token: ${{ secrets.WORKFLOW_TOKEN }}
          script: |
           const fs = require('fs');
           const markdownContent = fs.readFileSync('converted_report.md', 'utf8');
