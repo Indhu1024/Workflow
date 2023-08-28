@@ -10,12 +10,15 @@ def sarif_to_markdown(sarif_file):
     for run in sarif_data.get('runs', []):
         for result in run.get('results', []):
            print(result)
-           level = result.get('level', {}).get('name', 'N/A')
-           message = result.get('message', 'No message')
+            message = result.get('message', {})
+            rule_id = result.get('ruleId', 'N/A')
+            level = result.get('level', {}).get('name', 'N/A')
+            location = result.get('locations', [])[0].get('physicalLocation', {}).get('artifactLocation', {}).get('uri', 'N/A')
             
-           markdown_output += f"**Level:** {level}\n"
-           markdown_output += f"**Message:** {message}\n\n"
-
+            markdown_output += f"**Rule ID:** {rule_id}\n"
+            markdown_output += f"**Level:** {level}\n"
+            markdown_output += f"**Location:** {location}\n"
+            markdown_output += f"**Message:** {message.get('text', 'No message')}\n\n"
     return markdown_output
 
 if __name__ == '__main__':
