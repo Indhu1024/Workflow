@@ -1,8 +1,9 @@
 import json
-
+import sys
 def sarif_to_markdown(sarif_file):
     with open(sarif_file, 'r') as f:
         sarif_data = json.load(f)
+    print("SARIF Data:")    
     print(json.dumps(sarif_data, indent=2))
     markdown_output = "# SARIF Report\n\n"
     
