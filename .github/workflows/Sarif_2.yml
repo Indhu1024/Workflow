@@ -11,6 +11,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Display SARIF Report
-        run: cat converted_report.md
-    
+      - name: Convert SARIF to Markdown
+        run: |
+         python convert_sarif_to_md.py cx.sarif > converted_report.md
+      - name: Upload Markdown Report
+        uses: actions/upload-artifact@v2
+        with:
+         name: converted-report
+         path: converted_report.md
+
+      - name: Comment with Markdown Report
+        uses: actions/github-script@v4
+        with:
+         github-token: ${{ secrets.GITHUB_TOKEN }}
+         script: |
+          const markdownContent = fs.readFileSync('converted_report.md', 'utf8');
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: markdownContent,
+          });
