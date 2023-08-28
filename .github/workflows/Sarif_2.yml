@@ -2,6 +2,7 @@ name: SARIF Visualization Workflow
 on:
    pull_request:
       
+
 jobs:
   validate-sarif:
     runs-on: ubuntu-latest
@@ -23,13 +24,18 @@ jobs:
       - name: Comment with Markdown Report
         uses: actions/github-script@v4
         with:
+
          github-token: ${{ secrets.WORKFLOW_TOKEN }}
+
+
          script: |
           const fs = require('fs');
           const markdownContent = fs.readFileSync('converted_report.md', 'utf8');
           github.issues.createComment({
+
            issue_number: context.payload.pull_request.number,
            owner: context.repo.owner,
            repo: context.repo.repo,
            body: markdownContent,
+
           });
