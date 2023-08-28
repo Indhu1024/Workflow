@@ -1,8 +1,6 @@
 name: SARIF Visualization Workflow
 on:
-  push:
-   paths:
-      - 'converted_report.md'
+   workflow_dispatch:
 jobs:
   validate-sarif:
     runs-on: ubuntu-latest
