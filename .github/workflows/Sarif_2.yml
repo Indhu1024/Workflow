@@ -1,6 +1,8 @@
 name: SARIF Visualization Workflow
 on:
-   workflow_dispatch:
+  pull_request:
+    types:
+      - opened
 jobs:
   validate-sarif:
     runs-on: ubuntu-latest
@@ -9,20 +11,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install security-scanner 
-        run: npm install -g security-scanner 
-
-      - name: Generate SARIF report
-        run: security-scanner  --output-file report.sarif 
-        
-      - name: Upload SARIF report
+      - name: Convert SARIF to Markdown
+        run: |
+         python convert_sarif_to_md.py cx.sarif > converted_report.md
+         echo "::set-output name=markdown::$(cat converted_report.md)"
+      - name: Upload Markdown Report
         uses: actions/upload-artifact@v2
         with:
-          name: sarif-report
-          path: report.sarif
+         name: converted-report
+         path: converted_report.md
 
-      - name: Generate SARIF Visualization
-        uses: khulnasoft-labs/tfsecurity-sarif-action@v1
+      - name: Comment with Markdown Report
+        uses: actions/github-script@v4
         with:
-          input-file: cx.sarif
-          output-file: cx.html
+         github-token: ${{ secrets.GITHUB_TOKEN }}
+         script: |
+          const fs = require('fs');
+          const markdownContent = fs.readFileSync('converted_report.md', 'utf8');
+          github.issues.createComment({
+            issue_number: context.payload.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: markdownContent,
+          });
