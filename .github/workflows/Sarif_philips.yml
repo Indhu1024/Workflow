@@ -4,6 +4,7 @@ on:
     types:
       - opened
 
+      
 jobs:
   visualize-sarif:
     runs-on: ubuntu-latest
