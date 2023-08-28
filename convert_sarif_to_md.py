@@ -9,6 +9,7 @@ def sarif_to_markdown(sarif_file):
     
     for run in sarif_data.get('runs', []):
         for result in run.get('results', []):
+            print("Result Type:", type(result))
             markdown_output += f"## Result: {result.get('ruleId', 'Unknown')}\n"
             markdown_output += f"**Message:** {result.get('message', '')}\n"
             markdown_output += f"**Level:** {result['level']['name']}\n\n"
