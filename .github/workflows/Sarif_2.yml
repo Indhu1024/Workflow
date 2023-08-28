@@ -1,8 +1,7 @@
 name: SARIF Visualization Workflow
 on:
-  pull_request:
-    types:
-      - opened
+   workflow_dispatch:
+      
 jobs:
   validate-sarif:
     runs-on: ubuntu-latest
