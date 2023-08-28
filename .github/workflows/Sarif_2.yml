@@ -24,7 +24,8 @@ jobs:
         with:
          github-token: ${{ secrets.GITHUB_TOKEN }}
          script: |
-          const markdownContent = "${{ steps.sarif-to-md.outputs.markdown }}";
+          const fs = require('fs');
+          const markdownContent = fs.readFileSync('converted_report.md', 'utf8');
           github.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
