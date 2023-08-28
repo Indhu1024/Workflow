@@ -12,6 +12,7 @@ jobs:
       - name: Convert SARIF to Markdown
         run: |
          python convert_sarif_to_md.py cx.sarif > converted_report.md
+         echo "::set-output name=markdown::$(cat converted_report.md)"
       - name: Upload Markdown Report
         uses: actions/upload-artifact@v2
         with:
@@ -23,7 +24,7 @@ jobs:
         with:
          github-token: ${{ secrets.GITHUB_TOKEN }}
          script: |
-          const markdownContent = fs.readFileSync('converted_report.md', 'utf8');
+          const markdownContent = "${{ steps.sarif-to-md.outputs.markdown }}";
           github.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
