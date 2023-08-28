@@ -1,0 +1,30 @@
+name: SARIF Visualization Workflow using philips
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  visualize-sarif:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Convert SARIF to HTML
+        run: npx philips-labs/sarif-reporter -i cx.sarif -o report.html
+
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: sarif-report
+          path: report.html
