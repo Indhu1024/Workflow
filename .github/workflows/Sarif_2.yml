@@ -1,6 +1,8 @@
 name: SARIF Visualization Workflow
 on:
-   workflow_dispatch:
+  push:
+   paths:
+      - 'converted_report.md'
 jobs:
   validate-sarif:
     runs-on: ubuntu-latest
@@ -9,20 +11,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install security-scanner 
-        run: npm install -g security-scanner 
-
-      - name: Generate SARIF report
-        run: security-scanner  --output-file report.sarif 
-        
-      - name: Upload SARIF report
-        uses: actions/upload-artifact@v2
-        with:
-          name: sarif-report
-          path: report.sarif
-
-      - name: Generate SARIF Visualization
-        uses: khulnasoft-labs/tfsecurity-sarif-action@v1
-        with:
-          input-file: cx.sarif
-          output-file: cx.html
+      - name: Display SARIF Report
+        run: cat converted_report.md
+    
