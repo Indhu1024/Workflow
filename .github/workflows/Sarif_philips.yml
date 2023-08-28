@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Convert SARIF to HTML
-        run: npx philips-labs/sarif-reporter -i cx.sarif -o report.html
+        run: npx philips-labs/sarif-reporter -i cx.sarif -o report.html --token ${{ secrets.SARIF_TOKEN }}
 
       - name: Upload HTML Report
         uses: actions/upload-artifact@v2
