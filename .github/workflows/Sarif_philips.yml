@@ -3,7 +3,7 @@ on:
   pull_request:
     types:
       - opened
-
+      - synchronize
 jobs:
   visualize-sarif:
     runs-on: ubuntu-latest
@@ -29,4 +29,3 @@ jobs:
           name: sarif-report
           path: report.html
 
-          
