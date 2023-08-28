@@ -13,7 +13,7 @@ jobs:
       - name: Convert SARIF to Markdown
         run: |
          python convert_sarif_to_md.py cx.sarif > converted_report.md
-         echo "::set-output name=markdown::$(cat converted_report.md)"
+        #echo "::set-output name=markdown::$(cat converted_report.md)"
          
       - name: Upload Markdown Report
         uses: actions/upload-artifact@v2
