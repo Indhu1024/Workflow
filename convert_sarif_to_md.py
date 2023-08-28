@@ -9,7 +9,7 @@ def sarif_to_markdown(sarif_file):
     
     for run in sarif_data.get('runs', []):
         for result in run.get('results', []):
-           print(result)
+            print(result)
             message = result.get('message', {})
             rule_id = result.get('ruleId', 'N/A')
             level = result.get('level', {}).get('name', 'N/A')
