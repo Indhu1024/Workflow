@@ -1,21 +1,44 @@
 name: SARIF Validation Workflow
 on: 
-   workflow_dispatch:
+   pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
-  validate-sarif:
+  sarif-multitool:
+    name: SARIF Multitool
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: SARIF Multitool
-      uses: microsoft/sarif-actions@v0.1
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq
+        dotnet tool install -g Microsoft.CodeAnalysis.Sarif.Multitool --version 3.0.0
+        export PATH="$PATH:/root/.dotnet/tools"
+
+    - name: Convert SARIF to HTML
+      run: |
+        sarif-multitool convert cx.sarif --output output.json
+        jq -c '.runs[].results[] | { ruleId, message, level: .level | .level, locations: .locations[].physicalLocation | { file: .artifactLocation.uri, line: .region.startLine, column: .region.startColumn } }' output.json > report.json
+        # Generate basic HTML report directly in the workflow
+        echo '<html><head><title>SARIF Report</title></head><body>' > output.html
+        jq -r '.[] | "<p><strong>Rule ID:</strong> \(."ruleId")<br><strong>Message:</strong> \(."message")<br><strong>Level:</strong> \(."level")<br><strong>File:</strong> \(."locations".file)<br><strong>Line:</strong> \(."locations".line)<br><strong>Column:</strong> \(."locations".column)</p>"' report.json >> output.html
+        echo '</body></html>' >> output.html
+
+    - name: Upload HTML Report
+      uses: actions/upload-artifact@v2
       with:
-        # Command to be sent to SARIF Multitool
-        command: 'validate cx.sarif'
-    - name: Prisma report
-      uses: microsoft/sarif-actions@v0.1
-      with:
-            command: 'validate pcc_scan_results.sarif'  
+        name: sarif-html-report
+        path: output.html
+
+
+
+
+
+
+     
