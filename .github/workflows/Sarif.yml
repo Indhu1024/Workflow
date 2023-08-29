@@ -24,7 +24,7 @@ jobs:
 
     - name: Convert SARIF to HTML
       run: |
-        sarif-multitool convert cx.sarif --output output.json
+        /root/.dotnet/tools/ sarif-multitool convert cx.sarif --output output.json
         jq -c '.runs[].results[] | { ruleId, message, level: .level | .level, locations: .locations[].physicalLocation | { file: .artifactLocation.uri, line: .region.startLine, column: .region.startColumn } }' output.json > report.json
         # Generate basic HTML report directly in the workflow
         echo '<html><head><title>SARIF Report</title></head><body>' > output.html
@@ -36,7 +36,6 @@ jobs:
       with:
         name: sarif-html-report
         path: output.html
-
 
 
 
