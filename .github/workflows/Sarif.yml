@@ -14,7 +14,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Install sarif-multitool
-      run: dotnet tool install -g Microsoft.CodeAnalysis.Sarif.Multitool --version 3.0.0
+      run: dotnet tool install --global Sarif.Multitool --version 4.3.1
     
     - name: Add tool directory to PATH
       run: export PATH="$PATH:/root/.dotnet/tools"
