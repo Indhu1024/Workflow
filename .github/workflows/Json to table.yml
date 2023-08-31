@@ -14,7 +14,7 @@ jobs:
         id: generate-html
         uses: eddiejaoude/github-actions-reader-writer@v0.1
         with:
-           json-file-path: 'pcc_scan_results.json'
+           json-file-path: 'example_1.json'
            github-token: ${{ secrets.GITHUB_TOKEN }}
            columns: 3
            object-field-names: '[ "type", "name", "version", "licenses" ]'
