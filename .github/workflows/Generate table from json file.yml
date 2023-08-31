@@ -1,0 +1,22 @@
+name: Generate Table from JSON
+
+on:
+  push:
+    branches:
+      - GWS_214
+
+jobs:
+  generate-table:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.5
+
+      - name: Run Python Script
+        run: python generate_table.py
