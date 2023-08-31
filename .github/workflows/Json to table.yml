@@ -8,14 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     name: Update README from json data
     steps:
-    - uses: actions/checkout@v2
-    - name: Read/Write data into README
-      uses: eddiejaoude/github-actions-reader-writer@v0.1
-      with:
-        json-file-path: 'pcc_scan_results.json'
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        columns: 3
-        object-field-names: '[ "type", "name", "version", "licenses" ]'
-        file-to-use: 'README.md'
-        html-cell: '<td align="center"><p><a href="https://github.com/{{ type }}">{{ name }}</a></p><img src="{{ version }}" /><p><a href="https://github.com/EddieJaoudeCommunity/awesome-github-profiles/issues/{{ licenses }}">(:100: give your vote)</a></p></td>'
-        
+      -  name: Check out repository
+         uses: actions/checkout@v2
+      - name: Generate HTML content
+        id: generate-html
+        uses: eddiejaoude/github-actions-reader-writer@v0.1
+        with:
+           json-file-path: 'pcc_scan_results.json'
+           github-token: ${{ secrets.GITHUB_TOKEN }}
+           columns: 3
+           object-field-names: '[ "type", "name", "version", "licenses" ]'
+           html-cell: '<td align="center"><p><a href="https://github.com/{{ type }}">{{ name }}</a></p><img src="{{ version }}" /><p><a href="https://github.com/EddieJaoudeCommunity/awesome-github-profiles/issues/{{ licenses }}">(:100: give your vote)</a></p></td>'
+      - name: Update README with HTML content
+        run: |
+             echo "${{ steps.generate-html.outputs.html }}" > README.md
