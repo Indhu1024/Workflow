@@ -1,4 +1,4 @@
-name: Generate Table from JSON
+name: Generate Table from JSON using python script
 
 on:
   push:
