@@ -1,5 +1,5 @@
 import json
-
+import os
 # Read JSON data from the file
 with open('example_1.json', 'r') as json_file:
     data = json.load(json_file)
