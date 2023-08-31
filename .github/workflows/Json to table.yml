@@ -12,7 +12,7 @@ jobs:
          uses: actions/checkout@v2
       - name: Generate HTML content
         id: generate-html
-        uses: eddiejaoude/github-actions-reader-writer@v0.1
+        uses: eddiejaoude/github-actions-reader-writer@v0.1.1
         with:
            json-file-path: 'example_1.json'
            github-token: ${{ secrets.GITHUB_TOKEN }}
