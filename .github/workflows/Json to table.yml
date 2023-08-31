@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - GWS86_214
+      - GWS_214
 name: Json file into table format
 jobs:
   table:
