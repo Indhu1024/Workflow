@@ -24,5 +24,5 @@ table_html += '</table>'
 output_path = 'pcc_table.html'
 # Save HTML to a file
 with open(output_path, 'w') as html_file:
-    html_file.write(pcc_table_html)
+    html_file.write(table_html)
 print("HTML table generated and saved to",output_path)
