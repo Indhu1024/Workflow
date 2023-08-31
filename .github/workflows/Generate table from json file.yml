@@ -17,6 +17,13 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.11.5
-
-      - name: Run Python Script
-        run: python generate_table.py
+      - name: Run Python script
+        run: |
+            pip install -r requirements.txt  
+            python generate_table.py
+    
+      - name: Upload HTML as artifact
+        uses: actions/upload-artifact@v2
+        with:
+            name: html-table
+            path: table.html
