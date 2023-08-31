@@ -15,7 +15,7 @@ for key, value in data.items():
     </tr>
     '''
 table_html += '</table>'
-
+print(table_html)
 # Write the generated HTML to a file
 with open('table.html', 'w') as html_file:
     html_file.write(table_html)
