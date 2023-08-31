@@ -15,7 +15,7 @@ jobs:
         uses: eddiejaoude/github-actions-reader-writer@v0.1.1
         with:
            json-file-path: 'example_1.json'
-           github-token: ${{ secrets.GITHUB_TOKEN }}
+           github-token: ${{ secrets.WORKFLOW_TOKEN }}
            columns: 3
            object-field-names: '[ "type", "name", "version", "licenses" ]'
            html-cell: '<td align="center"><p><a href="https://github.com/{{ type }}">{{ name }}</a></p><img src="{{ version }}" /><p><a href="https://github.com/EddieJaoudeCommunity/awesome-github-profiles/issues/{{ licenses }}">(:100: give your vote)</a></p></td>'
