@@ -8,13 +8,13 @@ with open('pcc_scan_results.json', 'r') as json_file:
 # Generate HTML table
 table_html = '<table>'
 table_html += '<tr><th>Type</th><th>Name</th><th>Version</th><th>Licenses</th></tr>'
-for package in packages:
+for type,name,version,licenses in data.items():
     table_html += f'''
     <tr>
-        <td>{package["type"]}</td>
-        <td>{package["name"]}</td>
-        <td>{package["version"]}</td>
-        <td>{", ".join(package["licenses"])}</td>
+        <td>{type}</td>
+        <td>{name}</td>
+        <td>{version}</td>
+        <td>{licenses}</td>
     </tr>
 '''
 table_html += '</table>'
