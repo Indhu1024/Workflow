@@ -2,12 +2,12 @@ import json
 import os
 with open('pcc_scan_results.json', 'r') as json_file:
 # Parse JSON data
-   data = json.loads(json_data)
+# data = json.loads(json_data)
 # JSON data (replace this with your data)
 
 
 # Parse JSON data
-#data = json.loads(json_data)
+data = json.loads(json_data)
 
 # Extract the packages list
 packages = data["results"][0]["packages"]
