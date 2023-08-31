@@ -19,6 +19,8 @@ print(table_html)
 print("Current Working Directory:", os.getcwd())
 
 output_path='output/table.html'
+output_dir = os.path.dirname(output_path)
+os.makedirs(output_dir, exist_ok=True)
 # Write the generated HTML to a file
 with open(output_path, 'w') as html_file:
     html_file.write(table_html)
