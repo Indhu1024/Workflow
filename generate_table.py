@@ -16,7 +16,8 @@ for key, value in data.items():
     '''
 table_html += '</table>'
 print(table_html)
+output_path='https://github.com/Indhu1024/Workflow'
 # Write the generated HTML to a file
-with open('table.html', 'w') as html_file:
+with open(output_path, 'w') as html_file:
     html_file.write(table_html)
 
