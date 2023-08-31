@@ -1,5 +1,4 @@
-name: Generate Table from JSON using python script
-
+name: Generate Table from pcc scan reports
 on:
   push:
     branches:
