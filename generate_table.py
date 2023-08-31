@@ -22,7 +22,7 @@ output_path=r'C:\Users\ibalacha\Downloads\Workflow repository\Workflow\Workflow\
 #output_dir = os.path.dirname(output_path)
 #os.makedirs(output_dir, exist_ok=True)
 # Write the generated HTML to a file
-with open(output_path, 'w') as html_file:
+with open(output_path, 'w',encoding='utf-8') as html_file:
     html_file.write(table_html)
 
 print("HTML table generated and saved to", output_path)
