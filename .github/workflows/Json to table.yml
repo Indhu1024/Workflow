@@ -8,17 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Update README from json data
     steps:
-      -  name: Check out repository
-         uses: actions/checkout@v2
-      - name: Generate HTML content
-        id: generate-html
-        uses: eddiejaoude/github-actions-reader-writer@v0.1.1
-        with:
-           json-file-path: 'example_1.json'
-           github-token: ${{ secrets.WORKFLOW_TOKEN }}
-           columns: 3
-           object-field-names: '[ "fruit", "size", "color" ]'
-           html-cell: '<td align="center"><p><a href="https://github.com/{{ fruit }}">{{ size }}</a></p><img src="{{ color}}" /><p><a href="https://github.com/EddieJaoudeCommunity/awesome-github-profiles/issues/">(:100: give your vote)</a></p></td>'
-      - name: Update README with HTML content
-        run: |
-             echo "${{ steps.generate-html.outputs.html }}" > README.md
+      
+        - name: Checkout repository
+          uses: actions/checkout@v2
+  
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.11.5
+  
+        - name: Run Python Script
+          run: python generate_table.py
