@@ -19,3 +19,4 @@ table_html += '</table>'
 # Write the generated HTML to a file
 with open('table.html', 'w') as html_file:
     html_file.write(table_html)
+
