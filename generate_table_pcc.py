@@ -3,7 +3,6 @@ import json
 # JSON data (replace this with your data)
 json_data = '''
 {
-    {
 	"results": [
 		{
 			"id": "sha256:bd08b0c17e93272cda54d566f0597f5d4196c52f95ad5e3b49d2be31c7d11dd2",
@@ -5620,6 +5619,7 @@ json_data = '''
 	"consoleURL": "https://app3.prismacloud.io/compute?computeState=/monitor/vulnerabilities/images/ci?search=sha256%3Abd08b0c17e93272cda54d566f0597f5d4196c52f95ad5e3b49d2be31c7d11dd2"
 }
 '''
+
 
 # Parse JSON data
 data = json.loads(json_data)
