@@ -16,7 +16,7 @@ for key, value in data.items():
     '''
 table_html += '</table>'
 print(table_html)
-output_path='C:\Users\ibalacha\Downloads\Workflow repository\Workflow\Workflow'
+output_path=r'C:\Users\ibalacha\Downloads\Workflow repository\Workflow\Workflow'
 # Write the generated HTML to a file
 with open(output_path, 'w') as html_file:
     html_file.write(table_html)
