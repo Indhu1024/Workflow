@@ -1,0 +1,29 @@
+name: Generate Table from JSON using python script
+
+on:
+  push:
+    branches:
+      - GWS_214
+
+jobs:
+  generate-table:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.5
+      - name: Run Python script
+        run: |
+
+            python generate_table_pcc.py
+    
+      - name: Upload HTML as artifact
+        uses: actions/upload-artifact@v2
+        with:
+            name: html-table
+            path: table.html
