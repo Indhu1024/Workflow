@@ -5,14 +5,13 @@ with open('pcc_scan_results.json', 'r') as json_file:
     data = json.load(json_file)
 
 
-# Generate HTML table
 table_html = '<table>'
 table_html += '<tr><th>Type</th><th>Name</th><th>Version</th><th>Licenses</th></tr>'
 for package in data['results'][0]['packages']:
-    package_type = package['type']
-    package_name = package['name']
-    package_version = package['version']
-    package_licenses = ', '.join(package['licenses'])
+    package_type = package.get('type', 'N/A')
+    package_name = package.get('name', 'N/A')
+    package_version = package.get('version', 'N/A')
+    package_licenses = ', '.join(package.get('licenses', []))
     table_html += f'''
     <tr>
         <td>{package_type}</td>
