@@ -1,5 +1,5 @@
 on:
-  workflow-dispatch:
+  workflow_dispatch:
 name: Json file into table format
 jobs:
   table:
