@@ -1,15 +1,17 @@
 import json
 
 # Read JSON data from the file
-with open('pcc_scan_results.json', 'r') as json_file:
+with open('example_1.json', 'r') as json_file:
     data = json.load(json_file)
 
 # Generate HTML table
 table_html = '<table>'
-for entry in data:
+table_html += '<tr><th>Field</th><th>Value</th></tr>'
+for key, value in data.items():
     table_html += f'''
     <tr>
-        <td align="center"><p><a href="https://github.com/{entry["type"]}">{entry["name"]}</a></p><img src="{entry["version"]}" /><p><a href="https://github.com/EddieJaoudeCommunity/awesome-github-profiles/issues/{entry["licenses"]}">(:100: give your vote)</a></p></td>
+        <td>{key}</td>
+        <td>{value}</td>
     </tr>
     '''
 table_html += '</table>'
