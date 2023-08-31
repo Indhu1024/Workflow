@@ -21,7 +21,7 @@ for package in data['results'][0]['packages']:
     </tr>
     '''
 table_html += '</table>'
-output_path = 'pcc_table.html'
+output_path = 'table.html'
 # Save HTML to a file
 with open(output_path, 'w') as html_file:
     html_file.write(table_html)
