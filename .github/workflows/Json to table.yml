@@ -1,0 +1,19 @@
+on:
+  workflow-dispatch:
+name: Json file into table format
+jobs:
+  table:
+    runs-on: ubuntu-latest
+    name: Update README from json data
+    steps:
+    - uses: actions/checkout@v2
+    - name: Read/Write data into README
+      uses: eddiejaoude/github-actions-reader-writer@v0.1
+      with:
+        json-file-path: 'pcc_scan_results.json'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        columns: 3
+        object-field-names: '[ "type", "name", "version", "licenses" ]'
+        file-to-use: 'README.md'
+        html-cell: '<td align="center"><p><a href="https://github.com/{{ type }}">{{ name }}</a></p><img src="{{ version }}" /><p><a href="https://github.com/EddieJaoudeCommunity/awesome-github-profiles/issues/{{ licenses }}">(:100: give your vote)</a></p></td>'
+        
