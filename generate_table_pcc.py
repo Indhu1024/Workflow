@@ -6,7 +6,8 @@ with open('pcc_scan_results.json', 'r') as json_file:
 
 
 table_html = '<table>'
-table_html += '<tr><th>Type</th><th>Name</th><th>Version</th><th>Licenses</th></tr>'
+table_html += '<tr><th>Serial No</th><th>Type</th><th>Name</th><th>Version</th><th>Licenses</th></tr>'
+serial_number = 1
 for package in data['results'][0]['packages']:
     package_type = package.get('type', 'N/A')
     package_name = package.get('name', 'N/A')
@@ -14,12 +15,14 @@ for package in data['results'][0]['packages']:
     package_licenses = ', '.join(package.get('licenses', []))
     table_html += f'''
     <tr>
+        <td>{serial_number}</td>
         <td>{package_type}</td>
         <td>{package_name}</td>
         <td>{package_version}</td>
         <td>{package_licenses}</td>
     </tr>
     '''
+    serial_number += 1
 table_html += '</table>'
 output_path = 'table.html'
 # Save HTML to a file
