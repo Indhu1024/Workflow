@@ -1,0 +1,40 @@
+name: SARIF Tool Installation
+
+on: 
+ push:
+  branches:
+   - GWS_214
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # You can change the Node.js version if needed
+
+    - name: Install SARIF Tool
+      run: |
+        npm install -g sarif-converter
+      # Note: The SARIF tool might have a different package name; replace 'sarif-converter' with the actual package name.
+
+    - name: Verify SARIF Tool
+      run: |
+        sarif --version
+      # This command will check if the SARIF tool is installed and display its version.
+
+    - name: Run SARIF Conversion
+      run: |
+        sarif html -o summary.html cx.sarif
+      # Replace 'path/to/sarif/files' with the actual path to your SARIF files.
+
+    - name: Upload SARIF Summary
+      uses: actions/upload-artifact@v3
+      with:
+        name: sarif-summary
+        path: summary.html
