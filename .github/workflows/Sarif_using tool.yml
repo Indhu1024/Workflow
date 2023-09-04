@@ -23,13 +23,9 @@ jobs:
           dotnet-version: 7.0.10
     - name: Install SARIF Tool
       run: |
-<<<<<<< HEAD
+
           dotnet tool install --global Sarif.Multitool --version 4.3.1
       #npm install -g sarif-converter
-=======
-             dotnet tool install --global Sarif.Multitool --version 4.3.1
-      # npm install -g sarif-converter
->>>>>>> 139073c7f3298c32d198bb22854f5ca042244e4c
       # Note: The SARIF tool might have a different package name; replace 'sarif-converter' with the actual package name.
 
     - name: Verify .NET and SARIF Tool Versions
