@@ -24,6 +24,8 @@ jobs:
     - name: Install SARIF Tool
       run: |
           dotnet tool install --global Sarif.Multitool --version 4.3.1
+          echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> $HOME/.bashrc
+          source $HOME/.bashrc
       #dotnet tool install -g sarif-converter --version 4.0.0  
       #npm install -g sarif-html-report
 
