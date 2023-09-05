@@ -23,8 +23,9 @@ jobs:
           dotnet-version: 3.1
     - name: Install SARIF Tool
       run: |
+         npm install -g sarif-html-report
 
-          dotnet tool install --global Sarif.Multitool --version 4.3.1
+      # dotnet tool install --global Sarif.Multitool --version 4.3.1
       #npm install -g sarif-converter
       # Note: The SARIF tool might have a different package name; replace 'sarif-converter' with the actual package name.
 
@@ -36,7 +37,7 @@ jobs:
 
     - name: Run SARIF Conversion
       run: |
-        sarif html -o summary.html cx.sarif
+        sarif-html-report -i cx.sarif -o summary.html 
       # Replace 'path/to/sarif/files' with the actual path to your SARIF files.
 
     - name: Upload SARIF Summary
