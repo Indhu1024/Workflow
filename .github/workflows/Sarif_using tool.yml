@@ -42,7 +42,7 @@ jobs:
 
     - name: Run SARIF Conversion
       run: |
-        sarif convert -t CppCheck --output summary.html cx.sarif
+        sarif-multitool convert -t CppCheck --output summary.html cx.sarif
       # Replace 'path/to/sarif/files' with the actual path to your SARIF files.
 
     - name: Upload SARIF Summary
