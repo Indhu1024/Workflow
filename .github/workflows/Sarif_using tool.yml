@@ -38,7 +38,7 @@ jobs:
     - name: Verify .NET and SARIF Tool Versions
       run: |
         dotnet --version
-        sarif-multitool --version
+        sarif --version
       # This command will check if the SARIF tool is installed and display its version.
 
     - name: Run SARIF Conversion
