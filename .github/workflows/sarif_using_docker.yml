@@ -21,8 +21,8 @@ jobs:
     
       - name: Run SARIF Conversion Container
         run: |
-          docker run -v "$(pwd):/sarif" Indhu1024/sarif_docker_container:latest /bin/bash -c "sarif convert -t html -o /sarif/output.html /sarif/cx.sarif"
-          
+          docker run -v "$(pwd):/sarif" indhu1024/sarif_docker_container:latest /bin/bash -c "sarif convert -t html -o /sarif/output.html /sarif/cx.sarif"
+
       - name: Upload HTML Artifact
         uses: actions/upload-artifact@v2
         with:
