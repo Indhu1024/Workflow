@@ -11,3 +11,4 @@ RUN apt-get clean
 
 # Set the SARIF tools as the default command when running the container
 CMD ["sarif"]
+
