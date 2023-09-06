@@ -15,10 +15,14 @@ jobs:
 
       - name: Pull Docker image
         run: docker image pull indhu1024/workflow:newtag
-
+    
       - name: Run Docker container
         run: docker run indhu1024/workflow:newtag 
     
+      - name: Run SARIF Conversion Container
+        run: |
+          docker run -v "$(pwd):/sarif" Indhu1024/sarif_docker_container:latest /bin/bash -c "sarif convert -t html -o /sarif/output.html /sarif/cx.sarif"
+          
       - name: Upload HTML Artifact
         uses: actions/upload-artifact@v2
         with:
