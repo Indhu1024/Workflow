@@ -13,11 +13,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Pull Docker image
+        run: docker image pull indhu1024/workflow:newtag
+
       - name: Run Docker container
-        run: |
-          docker run -v $(pwd):/sarif sarif_docker_container \
-          ./sarif convert  --o output.html cx.sarif
-          docker cp $(docker ps -q -n=1):/sarif/output.html ./output.html
+        run: docker run indhu1024/workflow:newtag 
     
       - name: Upload HTML Artifact
         uses: actions/upload-artifact@v2
