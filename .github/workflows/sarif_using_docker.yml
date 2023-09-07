@@ -21,10 +21,16 @@ jobs:
     
       - name: Run SARIF Conversion Container
         run: |
-          docker run -v "c:/Users/ibalacha/Downloads/cx.sarif:/sarif" indhu1024/sarif_docker_image:latest /bin/bash -c "./sarif html -o output.html cx.sarif"
+          docker run -v "$(pwd):/sarif" indhu1024/sarif_docker_image:latest /bin/bash -c "./sarif html -o /sarif/output.html /sarif/cx.sarif"
+        working-directory: /sarif
+
+      - name: Copy Output HTML to Artifact Directory
+        run: |
+          cp /sarif/output.html ${{ github.workspace }}/output.html
+        working-directory: /sarif
 
       - name: Upload HTML Artifact
         uses: actions/upload-artifact@v2
         with:
           name: sarif-html-output
-          path: output.html
+          path: ${{ github.workspace }}/output.html
