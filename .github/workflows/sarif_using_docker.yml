@@ -21,7 +21,7 @@ jobs:
     
       - name: Run SARIF Conversion Container
         run: |
-          docker run -v "$(pwd):/sarif" indhu1024/sarif_docker_image:latest /bin/bash -c "ls /sarif"
+          docker run -v "$(pwd):/sarif" indhu1024/sarif_docker_image:latest /bin/bash -c "ls -l /sarif"
         working-directory: /sarif
         #./sarif html -o /sarif/output.html /sarif/cx.sarif
       - name: Copy Output HTML to Artifact Directory
