@@ -18,16 +18,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
            name: sarif-html-report
-      #- name: Configure pages
-       # uses: actions/configure-pages@v1
-      #- name: upload pages artifact
-       # uses: actions/upload-pages-artifact@v2
-       # with:
-        #  name: Report
-         # path: ./report
       - name: Deploy code
         id: deployment
         uses: peaceiris/actions-gh-pages@v4
         with:
-          artifact_name: sarif-html-report
-          #token: ${{secrets.WORKFLOW_TOKEN}}
+          github_token: ${{secrets.WORKFLOW_TOKEN}}
+          publish_dir: ./sarif-html-report
