@@ -37,6 +37,9 @@ jobs:
         with:
           name: sarif-html-report
           path: ./sarif-report
+      - name: test
+        run: |
+           ls
       - name: Deploy code
         id: deployment
         uses: crazy-max/ghaction-github-pages@v4
