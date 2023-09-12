@@ -45,6 +45,7 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v4
         with:
           artifact_name: sarif-html-report
+          publish_dir: ./sarif-report
           github_token: ${{ secrets.WORKFLOW_TOKEN }}
           target_branch: gh-pages
           build_dir: public
