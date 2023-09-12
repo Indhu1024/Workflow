@@ -3,7 +3,7 @@ name: Docker Build and SARIF Conversion
 on:
   push:
     branches:
-      - GWS_214
+      - GWS_215s
 
 jobs:
   build-and-convert-docker-image:
@@ -16,11 +16,10 @@ jobs:
       - name: Pull Docker image
         run: docker image pull indhu1024/sarif_vis:newtag
     
-      - name: Run Docker container
-        run: docker run indhu1024/sarif_vis:newtag 
     
       - name: Run SARIF Conversion Container
         run: |
+          docker run -v /bin/bash
           docker run -v "$(pwd):/sarif" indhu1024/sarif_docker_image:latest /bin/bash -c "mkdir -p /sarif && ls /sarif"
         working-directory: /sarif
         #./sarif html -o /sarif/output.html /sarif/cx.sarif
