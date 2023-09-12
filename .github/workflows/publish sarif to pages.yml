@@ -43,4 +43,6 @@ jobs:
         with:
           artifact_name: sarif-html-report
           github_token: ${{ secrets.WORKFLOW_TOKEN }}
+          target_branch: gh-pages
+          build_dir: public
           
