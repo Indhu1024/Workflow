@@ -39,7 +39,7 @@ jobs:
           path: ./ sarif-report
       - name: Deploy code
         id: deployment
-        uses: peaceiris/actions-gh-pages@v3.9.3
+        uses: actions/deploy-pages@v2
         with:
           github_token: ${{ secrets.WORKFLOW_TOKEN }}
           target_branch: gh-pages
