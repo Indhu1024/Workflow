@@ -1,0 +1,35 @@
+name: Publish Sarif into github pages
+on: 
+  push:
+    branches:
+      - sarif-conv1
+jobs:
+  upload-artifact:
+    runs-on: [self-hosted, gws-8.6,d-bsd-u0004]
+    steps:
+      - name: Upload sarif artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sarif-html-report
+          path: "/usr/local/actions-runner/_work/gws-v8.6-cicd-test/gws-v8.6-cicd-test/output.html"
+  download-and-deploy:
+    runs-on: [self-hosted, gws-8.6,d-bsd-u0004]
+    needs: upload-artifact
+    steps: 
+      - name: Download output.html
+        uses: actions/download-artifact@v2
+        with:
+           name: sarif-html-report
+      #- name: Configure pages
+       # uses: actions/configure-pages@v1
+      #- name: upload pages artifact
+       # uses: actions/upload-pages-artifact@v2
+       # with:
+        #  name: Report
+         # path: ./report
+      - name: Deploy code
+        id: deployment
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          #artifact_name: Report
+          token: ${{secrets.GIT_TOKEN}}
