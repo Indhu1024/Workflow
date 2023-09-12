@@ -26,7 +26,7 @@ jobs:
     #   url: ${{ steps.deployment.outputs.page_url }}  
     steps: 
       - name: Download output.html
-        uses: crazy-max/ghaction-github-pages@v4
+        uses: actions/download-artifact@v2
         with:
           name: sarif-html-report
           path: ./sarif-report
@@ -39,7 +39,7 @@ jobs:
           path: ./sarif-report
       - name: Deploy code
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: crazy-max/ghaction-github-pages@v4
         with:
           artifact_name: sarif-html-report
           github_token: ${{ secrets.WORKFLOW_TOKEN }}
