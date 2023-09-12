@@ -36,8 +36,6 @@ jobs:
       with:
         name: sarif-html-report
         path: output.html
+        command: 'validate cx.sarif'
+   
 
-
-
-
-     
