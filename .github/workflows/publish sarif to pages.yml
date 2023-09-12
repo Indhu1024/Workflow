@@ -38,7 +38,8 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3.9.3
         with:
           github_token: ${{ secrets.WORKFLOW_TOKEN }}
-          publish_dir: ./sarif-html-report
+          target_branch: gh-pages
+          publish_dir: ./sarif-report
           publish_branch: gh-pages
           allow_empty_commit: false
           keep_files: false
