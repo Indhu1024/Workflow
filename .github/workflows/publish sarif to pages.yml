@@ -25,6 +25,9 @@ jobs:
     #   name: github-pages
     #   url: ${{ steps.deployment.outputs.page_url }}  
     steps: 
+      - name: Create directory
+        run: |
+          mkdir -p sarif-report
       - name: Download output.html
         uses: actions/download-artifact@v2
         with:
