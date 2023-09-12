@@ -47,8 +47,8 @@ jobs:
         id: deployment
         uses: crazy-max/ghaction-github-pages@v4 
         with:
-          artifact_name: sarif-html-report
-          publish_dir: ./sarif-report
+          #artifact_name: sarif-html-report
+          #publish_dir: ./sarif-report
           #target_branch: GWS_214
           build_dir: ./sarif-report
         env:
