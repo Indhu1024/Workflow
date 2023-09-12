@@ -17,12 +17,22 @@ jobs:
   download-and-deploy:
     runs-on: ubuntu-latest
     needs: upload-artifact
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
     steps: 
       - name: Download output.html
         uses: actions/download-artifact@v2
         with:
           name: sarif-html-report
+      - name: Configure pages
+        uses: actions/configure-pages@v1 
       - name: Deploy code
+        id: deployment
         uses: peaceiris/actions-gh-pages@v3.9.3
         with:
           github_token: ${{ secrets.WORKFLOW_TOKEN }}
