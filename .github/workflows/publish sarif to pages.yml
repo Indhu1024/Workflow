@@ -49,7 +49,7 @@ jobs:
         with:
           artifact_name: sarif-html-pages
           publish_dir: ./sarif-report
-          target_branch: gh-pages
+          target_branch: GWS_214
           build_dir: ./sarif-report
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
