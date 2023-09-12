@@ -13,7 +13,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: sarif-html-report
-          path: ./docs/index.html
+          path: index.html
   download-and-deploy:
     runs-on: ubuntu-latest
     needs: upload-artifact
