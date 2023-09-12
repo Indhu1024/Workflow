@@ -1,8 +1,6 @@
 name: Publish Sarif into github pages
 on: 
-  push:
-    branches:
-      - sarif-conv1
+   workflow_dispatch:
 jobs:
   upload-artifact:
     runs-on: [self-hosted, gws-8.6,d-bsd-u0004]
