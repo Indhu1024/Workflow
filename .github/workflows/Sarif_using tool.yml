@@ -3,7 +3,7 @@ name: SARIF Tool Installation
 on: 
  push:
   branches:
-   - GWS_214
+   - GWS_215s
 
 jobs:
   build:

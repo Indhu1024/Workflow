@@ -3,7 +3,7 @@ name: Generate Table from JSON using python script
 on:
   push:
     branches:
-      - GWS_214
+      - GWS_215s
 
 jobs:
   generate-table:
