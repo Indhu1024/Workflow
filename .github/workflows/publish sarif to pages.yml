@@ -29,26 +29,18 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: sarif-html-report
-          path: ./ sarif-report
+          path: ./sarif-report
       - name: Configure pages
         uses: actions/configure-pages@v1 
       - name: upload pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
           name: sarif-html-report
-          path: ./ sarif-report
+          path: ./sarif-report
       - name: Deploy code
         id: deployment
         uses: actions/deploy-pages@v2
         with:
+          artifact_name: sarif-html-report
           github_token: ${{ secrets.WORKFLOW_TOKEN }}
-          target_branch: gh-pages
-          publish_dir: ./sarif-report
-          publish_branch: gh-pages
-          allow_empty_commit: false
-          keep_files: false
-          force_orphan: false
-          enable_jekyll: false
-          disable_nojekyll: false
-          exclude_assets: .github
-      
+          
