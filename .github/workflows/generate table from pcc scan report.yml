@@ -2,7 +2,7 @@ name: Generate Table from pcc scan reports
 on:
   push:
     branches:
-      - GWS_214
+      - GWS_215s
 
 jobs:
   generate-table:
