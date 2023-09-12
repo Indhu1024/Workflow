@@ -48,5 +48,5 @@ jobs:
           publish_dir: ./sarif-report
           github_token: ${{ secrets.WORKFLOW_TOKEN }}
           target_branch: gh-pages
-          build_dir: public
+          build_dir: ./sarif-report
           
