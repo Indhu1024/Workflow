@@ -50,5 +50,5 @@ jobs:
           target_branch: gh-pages
           build_dir: ./sarif-report
         env:
-            GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           
