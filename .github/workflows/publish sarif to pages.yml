@@ -1,6 +1,6 @@
 name: Publish Sarif into github pages
 on: 
-   workflow_dispatch:
+  workflow_dispatch:
 jobs:
   upload-artifact:
     runs-on: ubuntu-latest
@@ -17,10 +17,8 @@ jobs:
       - name: Download output.html
         uses: actions/download-artifact@v2
         with:
-           name: sarif-html-report
+          name: sarif-html-report
       - name: Deploy code
-        id: deployment
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{secrets.WORKFLOW_TOKEN}}
           publish_dir: ./sarif-html-report
