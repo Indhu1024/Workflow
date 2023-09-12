@@ -21,9 +21,9 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}  
+    # environment:
+    #   name: github-pages
+    #   url: ${{ steps.deployment.outputs.page_url }}  
     steps: 
       - name: Download output.html
         uses: actions/download-artifact@v2
