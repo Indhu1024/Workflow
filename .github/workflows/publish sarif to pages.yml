@@ -26,7 +26,7 @@ jobs:
     #   url: ${{ steps.deployment.outputs.page_url }}  
     steps: 
       - name: Download output.html
-        uses: actions/download-artifact@v2
+        uses: crazy-max/ghaction-github-pages@v4
         with:
           name: sarif-html-report
           path: ./sarif-report
