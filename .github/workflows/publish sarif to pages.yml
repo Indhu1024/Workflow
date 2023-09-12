@@ -35,11 +35,11 @@ jobs:
           path: ./sarif-report
       - name: Configure pages
         uses: actions/configure-pages@v1 
-      - name: upload pages artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          name: sarif-html-pages
-          path: ./sarif-report
+      # - name: upload pages artifact
+      #   uses: actions/upload-pages-artifact@v2
+      #   with:
+      #     name: sarif-html-pages
+      #     path: ./sarif-report
       - name: test
         run: |
            ls
